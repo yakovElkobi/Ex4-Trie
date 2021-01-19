@@ -80,19 +80,20 @@ void freeTrie(node *root){
 int main(int argc, char *argv[]){
    node *root = getNode('*');
     char str[WORD];
-
-	if (stdin){
-	   while (fscanf(stdin, "%59s", str) == 1){
-	        int i;
-		for(i = 0; str[i]; i++){
-		    str[i] = tolower(str[i]);		     
-		    if(str[i] > 122 || str[i] < 97)
-		       str[i] = '\0';
-	}
-		insertTrie(root,str);
-	}
-	fclose(stdin);
-	}
+    int i = 0;
+    char c;
+   
+        while((c = getchar()) != EOF){
+              if(isspace(c) && i > 0){
+                  str[i] = '\0';
+                  insertTrie(root,str);
+                  i = 0;
+              }
+              else if(isalpha(c)){
+                  str[i] = tolower(c);
+                  ++i;
+              }
+        }
 	 if(argc == 2 && strcmp(argv[1]," r")){
 	    printRecRSort(root,str,0);
 	 }
