@@ -2,7 +2,7 @@ CC = gcc
 AR = ar
 FLAGS = -Wall -g
 
-alL: frequency
+all: frequency
 frequency: Trie.c
 	$(CC) $(FLAGS) Trie.c -o frequency
 clean:
